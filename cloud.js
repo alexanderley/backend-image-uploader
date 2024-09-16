@@ -1,17 +1,10 @@
 
 require('dotenv').config();
 const cloudinary = require('cloudinary').v2;
-// console.log('cloudi: ', cloudinary)
 
-// const { CloudinaryStorage } = require('multer-storage-cloudinary');
 console.log(process.env.CLOUDINARY_API_KEY);
 console.log(process.env.CLOUDINARY_API_SECRET);
 
-// cloudinary.config({
-//     cloud_name: 'dvk1rnesj',
-//     api_key: process.env.CLOUDINARY_API_KEY,
-//     api_secret: process.env.CLOUDINARY_API_SECRECT,  
-// });
 
 cloudinary.config({
     cloud_name: 'dvk1rnesj',
@@ -27,17 +20,15 @@ console.log(cloudinary.config());
 // Uploads an image file
 /////////////////////////
 const uploadImage = async (imagePath) => {
-
     const options = {
       use_filename: true,
       unique_filename: false,
       overwrite: true,
     };
-
     try {
       // Upload the image
       const result = await cloudinary.uploader.upload(imagePath, options);
-      console.log(result);
+      console.log('Result: 🐧', result);
       return result.public_id;
     } catch (error) {
       console.error(error);
@@ -79,9 +70,8 @@ const createImageTag = (publicId, ...colors) => {
     let imageTag = cloudinary.image(publicId, {
       transformation: [
         { width: 250, height: 250, gravity: 'faces', crop: 'thumb' },
-        { radius: 'max' },
-        { effect: 'outline:10', color: effectColor },
-        { background: backgroundColor },
+        // { effect: 'outline:10', color: effectColor },
+        // { background: backgroundColor },
       ],
     });
 
@@ -95,22 +85,21 @@ const createImageTag = (publicId, ...colors) => {
 //////////////////
 
 (async () => {
-    console.log('image upload running');
-    // Set the image to upload
-    const imagePath = './images/meer.jpg';
-
-    // Upload the image
-    const publicId = await uploadImage(imagePath);
-
-    // Get the colors in the image
-    const colors = await getAssetInfo(publicId);
-
-    // Create an image tag, using two of the colors in a transformation
-    const imageTag = await createImageTag(publicId, colors[0][0], colors[1][0]);
-
-    // Log the image tag to the console
-    console.log(imageTag);
-
+        console.log('image upload running');
+        // Set the image to upload
+        const imagePath = './images/forest.jpg';
+    
+        // Upload the image
+        const publicId = await uploadImage(imagePath);
+    
+        // Get the colors in the image
+        const colors = await getAssetInfo(publicId);
+    
+        // Create an image tag, using two of the colors in a transformation
+        const imageTag = await createImageTag(publicId, colors[0][0], colors[1][0]);
+    
+        // Log the image tag to the console
+        console.log(imageTag);
 })();
 
 
