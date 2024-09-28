@@ -25,25 +25,25 @@ router.post("/gallery", async (req,res) => {
 });
 
 
-router.post("/image", async(req, res)=>{
-    const {url} = req.body
+// router.post("/image", async(req, res)=>{
+//     const {url} = req.body
 
-    try{
-        const newImage = new Image({
-            url
-        })
-        const savedImages = await newImage.save();
+//     try{
+//         const newImage = new Image({
+//             url
+//         })
+//         const savedImages = await newImage.save();
         
-        res.status(201).json({
-            message: 'Added image to the database'
-        })
-    }catch(err){
-        console.error(err)
-        res.status(500).json({
-            message: 'Failed to add image to Data base'
-        })
-    }
-})
+//         res.status(201).json({
+//             message: 'Added image to the database'
+//         })
+//     }catch(err){
+//         console.error(err)
+//         res.status(500).json({
+//             message: 'Failed to add image to Data base'
+//         })
+//     }
+// })
 
 
 
@@ -51,7 +51,7 @@ router.post("/imageToGallery", async (req, res) => {
     // Saved URL from Cloudinary
     const { url } = req.body; 
 
-    console.log("reqBody: 🎂🎂🎂🎂", req.body);
+    console.log("reqBody: 🎂", req.body);
 
     // Hardcoded Gallery ID for testing
     const galleryId = mongoose.Types.ObjectId('66e888df678cb5c7533419b2');
@@ -79,6 +79,27 @@ router.post("/imageToGallery", async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Failed to add image to gallery' });
+    }
+});
+
+router.post('/getImageGallery', async (req,res) => {
+    const { id } = req.body; 
+    // const id = '66e888df678cb5c7533419b2'
+
+    // console.log('yy getImageGallery: 🤢🤢🤢', id);
+
+
+    try{
+        const foundGallery = await ImageGallery.findOne({_id: id})
+        if(!foundGallery){
+            return res.status(404).json({message: 'Cant find Gallery on database'});
+        } else{
+            return res.status(200).json(foundGallery)
+        }
+    }
+    catch(err){
+        console.error('err', err);
+        return res.status(500).json({message: 'Failed to fetch imageGallery from server'});
     }
 });
 
