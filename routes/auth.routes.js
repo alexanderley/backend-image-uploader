@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User.model");
 const nodemailer = require("nodemailer");
 const frontend_URL = require("../frontendKey");
+console.log('yy frontend Key: ✨✨✨✨', frontend_URL);
 
 const { isAuthenticated } = require('./../middleware/jwt.middleware.js');
 

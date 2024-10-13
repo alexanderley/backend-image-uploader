@@ -10,6 +10,7 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 
 const cors = require("cors");
+const frontend_URL = require("../frontendKey");
 
 // Middleware configuration
 module.exports = (app) => {
@@ -17,11 +18,18 @@ module.exports = (app) => {
   // Services like heroku use something called a proxy and you need to add this to your server
   app.set("trust proxy", 1);
 
+  // app.use(
+  //   cors({
+  //     origin: ["http://localhost:5173"],
+  //   })
+  // );
+
   app.use(
     cors({
-      origin: ["http://localhost:5173"],
+      origin: [frontend_URL],
     })
   );
+
 
   // In development environment the app logs
   app.use(logger("dev"));
