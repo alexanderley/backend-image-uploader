@@ -2,6 +2,6 @@
 // const frontend_URL = "http://localhost:5173";
 
 // This is for next.js because it is running on port 3000
-const frontend_URL = "http://localhost:3001";
+const frontend_URL = "http://localhost:3000";
 
 module.exports = frontend_URL;
