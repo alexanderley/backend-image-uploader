@@ -84,6 +84,7 @@ router.post("/imageToGallery", async (req, res) => {
 
 router.post('/getImageGallery', async (req,res) => {
     const { id } = req.body; 
+    console.log('yy id XXXXXXXXXXXXXXXXXXXX: ', id)
     // const id = '66e888df678cb5c7533419b2'
 
     // console.log('yy getImageGallery: 🤢🤢🤢', id);

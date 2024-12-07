@@ -8,4 +8,4 @@ const imageGallerySchema = new Schema({
     }]
 })
 
-module.exports = model("ImageGallery", imageGallerySchema);
+module.exports = model("imagegalleries", imageGallerySchema);
