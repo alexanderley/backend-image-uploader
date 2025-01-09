@@ -25,6 +25,9 @@ app.use("/auth", authRouter);
 const contentRouter = require("./routes/content.routes");
 app.use("/content", contentRouter);
 
+const shopRoutes = require('./routes/shop.routes');
+app.use('/shop', shopRoutes );
+
 require("./error-handling")(app);
 
 module.exports = app;
