@@ -22,6 +22,7 @@
     "nodemon": "^3.1.7",
     "punycode": "^2.3.1",
     "simple-update-notifier": "^2.0.0",
+    "stripe": "^17.5.0",
     "tunnel-agent": "^0.6.0",
     "uri-js": "^4.4.1"
   }
